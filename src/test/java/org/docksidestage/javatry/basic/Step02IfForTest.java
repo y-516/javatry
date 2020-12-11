@@ -1,5 +1,5 @@
 /*
- * Copyright 2019-2020 the original author or authors.
+ * Copyright 2019-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ public class Step02IfForTest extends PlainTestCase {
         } else {
             sea = 7;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -67,7 +67,7 @@ public class Step02IfForTest extends PlainTestCase {
         } else {
             sea = 9;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 7
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -91,7 +91,7 @@ public class Step02IfForTest extends PlainTestCase {
         if (land) {
             sea = 10;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => 10
     }
 
     // ===================================================================================
@@ -107,7 +107,7 @@ public class Step02IfForTest extends PlainTestCase {
                 sea = stage;
             }
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => dockside
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
@@ -117,29 +117,37 @@ public class Step02IfForTest extends PlainTestCase {
         for (String stage : stageList) {
             sea = stage;
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => magiclamp
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_foreach_continueBreak() {
         List<String> stageList = prepareStageList();
         String sea = null;
+
         for (String stage : stageList) {
+            //brで始まっているかどうか
             if (stage.startsWith("br")) {
                 continue;
             }
             sea = stage;
+            //gaが含まれているか
             if (stage.contains("ga")) {
                 break;
             }
         }
-        log(sea); // your answer? => 
+
+        log(sea); // your answer? => hangar
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_for_listforeach_basic() {
         List<String> stageList = prepareStageList();
         StringBuilder sb = new StringBuilder();
+        log(sb);
+        log("".equals(sb));
+        log(sb == null);
+        log(sb.length() > 0);
         stageList.forEach(stage -> {
             if (sb.length() > 0) {
                 return;
@@ -149,7 +157,7 @@ public class Step02IfForTest extends PlainTestCase {
             }
         });
         String sea = sb.toString();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => dockside
     }
 
     // ===================================================================================
@@ -161,6 +169,14 @@ public class Step02IfForTest extends PlainTestCase {
      */
     public void test_iffor_making() {
         // write if-for here
+        List<String> stageList = prepareStageList();
+        List<String> array = new ArrayList<String>();
+        stageList.forEach(stage -> {
+            if (stage.contains("a")) {
+                array.add(stage);
+            }
+        });
+        log(array);
     }
 
     // ===================================================================================
@@ -174,15 +190,36 @@ public class Step02IfForTest extends PlainTestCase {
         List<String> stageList = prepareStageList();
         String sea = null;
         for (String stage : stageList) {
+            //brから始まってたらループスキップ
             if (stage.startsWith("br")) {
                 continue;
             }
             sea = stage;
+            //gaが含まれていたらbreak
             if (stage.contains("ga")) {
                 break;
             }
         }
         log(sea); // should be same as before-fix
+    }
+
+    //foreach文をforEach()メソッドへの置き換え
+    public void test_change_foreach_to_forEach() {
+        List<String> stageList = prepareStageList();
+        StringBuilder sb = new StringBuilder();
+
+        stageList.forEach(stage -> {
+            //brから始まってたらreturn
+            if (stage.startsWith("br")) {
+                return;
+            }
+            if (sb.indexOf("ga") == -1) {//sbにgaが含まれていなければ
+                sb.setLength(0);//sbクリア
+                sb.append(stage);//上書き
+            }
+        });
+        log(sb); // your answer? =>
+
     }
 
     /**
