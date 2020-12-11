@@ -35,15 +35,15 @@ public class Step04MethodTest extends PlainTestCase {
      */
     public void test_method_call_basic() {
         String sea = supplySomething();
-        log(sea); // your answer? =>
+        log(sea); // your answer? =>over
     }
 
     /** Same as the previous method question. (前のメソッドの質問と同じ) */
     public void test_method_call_many() {
-        String sea = functionSomething("mystic");
+        String sea = functionSomething("mystic");//mysmys
         consumeSomething(supplySomething());
         runnableSomething();
-        log(sea); // your answer? => 
+        log(sea); // your answer? => mysmys
     }
 
     private String functionSomething(String name) {
@@ -72,18 +72,18 @@ public class Step04MethodTest extends PlainTestCase {
         St4MutableStage mutable = new St4MutableStage();
         int sea = 904;
         boolean land = false;
-        helloMutable(sea - 4, land, mutable);
+        helloMutable(sea - 4, land, mutable);//返り値をseaに代入していない
         if (!land) {
             sea = sea + mutable.getStageName().length();
         }
-        log(sea); // your answer? => 
+        log(sea); // your answer? => //910
     }
 
-    private int helloMutable(int sea, Boolean land, St4MutableStage piari) {
-        sea++;
+    private int helloMutable(int sea, Boolean land, St4MutableStage piari) {//900, false, mutableClass
+        sea++;//901
         land = true;
         piari.setStageName("mystic");
-        return sea;
+        return sea;//901
     }
 
     private static class St4MutableStage {
